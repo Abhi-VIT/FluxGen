@@ -1,0 +1,152 @@
+/* Global Reset - Blueprint/Engineering Theme */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Courier New', Courier, monospace;
+    /* Blueprint Vibe */
+    color: #e0f0ff;
+    background-color: #002b36;
+    overflow: hidden;
+}
+
+/* Slide Container */
+.slides-container {
+    width: 100vw;
+    height: 100vh;
+}
+
+.slide {
+    height: 100vh;
+    width: 100%;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 3rem;
+    position: relative;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    background-image:
+        linear-gradient(rgba(0, 50, 80, 0.5) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 50, 80, 0.5) 1px, transparent 1px);
+    background-size: 50px 50px;
+    /* Grid Pattern */
+}
+
+.slide.active {
+    display: flex;
+    opacity: 1;
+}
+
+/* Typography */
+h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    color: #268bd2;
+    text-transform: uppercase;
+    border: 4px solid #268bd2;
+    padding: 20px 40px;
+    background: rgba(0, 0, 0, 0.3);
+}
+
+h2 {
+    font-size: 2rem;
+    color: #b58900;
+    /* Blueprint Yellow */
+    margin-bottom: 2rem;
+    text-decoration: underline;
+}
+
+p,
+li {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    max-width: 900px;
+    color: #839496;
+}
+
+strong {
+    color: #fdf6e3;
+}
+
+ul {
+    margin-bottom: 2rem;
+    border-left: 2px solid #268bd2;
+    padding-left: 20px;
+}
+
+li {
+    margin-bottom: 1rem;
+    list-style: none;
+}
+
+/* Workflow Diagram - Engineering Schematic Style */
+.schematic {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 40px;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    border: 1px dashed #586e75;
+}
+
+.box {
+    border: 2px solid #2aa198;
+    padding: 15px;
+    width: 150px;
+    text-align: center;
+    color: #2aa198;
+    font-weight: bold;
+}
+
+.connector {
+    width: 50px;
+    height: 2px;
+    background: #586e75;
+}
+
+/* Image */
+.sim-img {
+    border: 5px solid #fff;
+    box-shadow: 10px 10px 0px rgba(0, 0, 0, 0.5);
+    max-height: 45vh;
+}
+
+/* Navigation */
+.control-panel {
+    position: absolute;
+    bottom: 20px;
+    display: flex;
+    gap: 10px;
+    background: #073642;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #586e75;
+}
+
+.btn {
+    background: #586e75;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-family: inherit;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.btn:hover {
+    background: #268bd2;
+}
+
+.status-bar {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: #586e75;
+    font-size: 0.8rem;
+}

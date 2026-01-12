@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Problem 3: The Balancing Act</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="status-bar">FluxGen R&D :: System Dynamics Module</div>
+
+    <!-- Slide 1: Title -->
+    <div class="slide active" id="slide1">
+        <h1>Problem 3: The Balancing Act</h1>
+        <p><strong>System Dynamics & Mass Balance Optimization</strong></p>
+        <br>
+        <p>The Case of the Missing 400 Units</p>
+        <div class="control-panel">
+            <button class="btn" onclick="nextSlide(2)">INITIATE &rarr;</button>
+        </div>
+    </div>
+
+    <!-- Slide 2: Understanding -->
+    <div class="slide" id="slide2">
+        <h2>a. Understanding the Problem</h2>
+        <p><strong>The Core Challenge:</strong> Reconciling a dynamic mass balance equation where Inputs $\neq$ Outputs
+            + $\Delta$Storage in real-time.</p>
+        <br>
+        <p>We need to explain a spatial and temporal gap: Water is missing (400 units) and delayed (12 hours). The goal
+            is to build a "Digital Twin" that accounts for these physics.</p>
+        <div class="control-panel">
+            <button class="btn" onclick="nextSlide(3)">PRINCIPLES &rarr;</button>
+        </div>
+    </div>
+
+    <!-- Slide 3: Principles -->
+    <div class="slide" id="slide3">
+        <h2>b. Key Physical Principles</h2>
+        <ul>
+            <li><strong>Conservation of Mass:</strong> Matter is neither created nor destroyed ($\frac{dS}{dt} = I -
+                O$).</li>
+            <li><strong>Hydraulic Routing / Lag:</strong> Water flows at finite velocity ($v = \frac{1}{n} R^{2/3}
+                S^{1/2}$). The channel acts as a buffer.</li>
+            <li><strong>Thermal Expansion:</strong> $\rho = f(T)$. As Temperature rises, Density falls, Volume rises.
+            </li>
+        </ul>
+        <div class="control-panel">
+            <button class="btn" onclick="nextSlide(4)">APPROACH &rarr;</button>
+        </div>
+    </div>
+
+    <!-- Slide 4: Simulation Approach -->
+    <div class="slide" id="slide4">
+        <h2>c. My Approach: Digital Twin Simulation</h2>
+        <p>I built a <strong>Python Simulation</strong> to model the routing delay.</p>
+
+        <img src="mass_balance_simulation.png" class="sim-img" alt="Simulation Graph">
+
+        <p style="font-size: 0.9rem; margin-top: 10px;"><em>The graph proves the "Missing" water is partially stored in
+                the buffer (Green Line) and released later.</em></p>
+
+        <div class="control-panel">
+            <button class="btn" onclick="nextSlide(5)">WORKFLOW &rarr;</button>
+        </div>
+    </div>
+
+    <!-- Slide 5: Workflow & Validation -->
+    <div class="slide" id="slide5">
+        <h2>e. Validation & Twin Workflow</h2>
+        <p>How we ensure the Twin is robust.</p>
+
+        <div class="schematic">
+            <div class="box">Raw Sensor Inputs</div>
+            <div class="connector"></div>
+            <div class="box" style="border-color: #b58900; color: #b58900;">Temp Correction</div>
+            <div class="connector"></div>
+            <div class="box" style="border-color: #cb4b16; color: #cb4b16;">Lag Model</div>
+            <div class="connector"></div>
+            <div class="box">Balanced Output</div>
+        </div>
+        <br>
+        <ul>
+            <li><strong>Temp Correction:</strong> Normalize Volume to Mass using $T_{current}$.</li>
+            <li><strong>Lag Model:</strong> Don't expect $Out(t) == In(t)$. Expect $Out(t) == In(t - 12)$.</li>
+        </ul>
+
+        <div class="control-panel">
+            <button class="btn" onclick="nextSlide(1)">RESET SYSTEM</button>
+        </div>
+    </div>
+
+    <script>
+        function nextSlide(id) {
+            document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
+            document.getElementById('slide' + id).classList.add('active');
+        }
+    </script>
+</body>
+
+</html>
