@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Problem 4: Groundwater Spatial Model</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Slide 1: Title -->
+    <div class="slide active" id="slide1">
+        <h1>Problem 4: Spatial Groundwater Modeling</h1>
+        <p><strong>Case Study:</strong> Quantifying Spatial Dependency & Impact Gradients</p>
+        <button onclick="nextSlide(2)" style="margin-top: 30px;">Open Case Study &rarr;</button>
+    </div>
+
+    <!-- Slide 2: Understanding -->
+    <div class="slide" id="slide2">
+        <h2>a. Understanding the Problem</h2>
+        <p>The system is a complex <strong>Multi-Source Interaction Problem</strong>.</p>
+        <p>We are not modeling isolated wells. We are modeling the <strong>Interference Pattern</strong> of four
+            competing land-use types (Agri, City, Forest, Water) on a shared resource.</p>
+        <p>The core challenge is to map the <strong>Net Gradient Vector Field</strong> to understand how stress
+            propagates to Critical Zones.</p>
+        <div class="nav-wrap">
+            <button onclick="nextSlide(3)">Principles &rarr;</button>
+        </div>
+    </div>
+
+    <!-- Slide 3: Principles -->
+    <div class="slide" id="slide3">
+        <h2>b. Key Physical Principles</h2>
+        <ul>
+            <li><strong>Superposition Principle:</strong> Total Drawdown is the sum of independent drawdowns ($\sum
+                s_i$).</li>
+            <li><strong>Darcy's Law:</strong> Groundwater follows the path of steepest hydraulic descent ($q = -K \nabla
+                h$).</li>
+            <li><strong>Radial Decay:</strong> Impact diminishes with distance ($1/r$ or logarithmic).</li>
+        </ul>
+        <div class="nav-wrap">
+            <button onclick="nextSlide(4)">My Approach &rarr;</button>
+        </div>
+    </div>
+
+    <!-- Slide 4: Approach & Visualization -->
+    <div class="slide" id="slide4">
+        <h2>c. My Approach: The Spatial Interaction Model</h2>
+        <p>I utilized a grid-based computation engine to sum up radial influence functions.</p>
+
+        <img src="spatial_interaction.png" class="model-img" alt="Groundwater Heatmap"
+            onerror="this.src='../groundwater_model.png'">
+        <!-- Fallback to parent dir image if local one generated differently -->
+
+        <p style="font-size:0.9rem; margin-top:10px;"><em>The Heatmap reveals the "Cones of Depression" (Red/Orange) and
+                Flow Vectors (Arrows).</em></p>
+
+        <div class="nav-wrap">
+            <button onclick="nextSlide(5)">Workflow & Validation &rarr;</button>
+        </div>
+    </div>
+
+    <!-- Slide 5: Workflow -->
+    <div class="slide" id="slide5">
+        <h2>e. Model Workflow & Validation</h2>
+
+        <div class="workflow">
+            <div class="step-box">1. Define Grid Domain ($100 \times 100$)</div>
+            <div class="arrow-down">&darr;</div>
+            <div class="step-box">2. Inject Sources (Gaussian Wells)</div>
+            <div class="arrow-down">&darr;</div>
+            <div class="step-box">3. Compute Net Superposition ($Z_{net}$)</div>
+            <div class="arrow-down">&darr;</div>
+            <div class="step-box">4. Calculate Flow Gradients ($\nabla H$)</div>
+            <div class="arrow-down">&darr;</div>
+            <div class="step-box" style="border-color: #d84315; color: #d84315;">5. Validate at Critical Zones</div>
+        </div>
+
+        <div class="nav-wrap">
+            <button onclick="nextSlide(1)">&#8634; Restart Presentation</button>
+        </div>
+    </div>
+
+    <script>
+        function nextSlide(id) {
+            document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
+            document.getElementById('slide' + id).classList.add('active');
+        }
+    </script>
+</body>
+
+</html>
