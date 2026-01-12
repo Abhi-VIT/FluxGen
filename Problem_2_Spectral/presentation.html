@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Problem 2: The Spectral Discrepancy</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Slide 1: Title -->
+    <div class="slide active" id="slide1">
+        <h1>Problem 2: The Spectral Discrepancy</h1>
+        <p>Satellite Alert vs. Ground Truth</p>
+        <div style="width: 100px; height: 1px; background: #44ffbb; margin: 20px 0;"></div>
+        <p style="color: #8899aa; font-style: italic;">Diagnosing False Positives in Remote Sensing</p>
+        <div class="nav-bar">
+            <button class="btn" onclick="nextSlide(2)">Enter System &rarr;</button>
+        </div>
+    </div>
+
+    <!-- Slide 2: Understanding -->
+    <div class="slide" id="slide2">
+        <h2>a. Understanding the Discrepancy</h2>
+        <p><strong>The Conflict:</strong> Satellite Index += 40% (Bloom Alert) | Ground Truth = Clear.</p>
+        <p><strong>Diagnosis:</strong> Since the "Bloom" signal is uniform across 50 disparate sites, and directly
+            contradicted by verification, we are facing a <span style="color: #ffcc00">Systematic Error</span>, not a
+            biological event.</p>
+        <br>
+        <h2>b. Key Principles</h2>
+        <ul>
+            <li><strong>Atmospheric Scattering:</strong> Haze/Aerosols scatter Blue/Green light, mimicking algae
+                reflectance.</li>
+            <li><strong>Specular Reflection:</strong> Sun Glint turns water into a mirror, saturating sensors.</li>
+            <li><strong>Spectral Specificity:</strong> Real chlorophyll has a unique signature (Red Edge) that Haze
+                lacks.</li>
+        </ul>
+        <div class="nav-bar">
+            <button class="btn" onclick="nextSlide(3)">Show Approach &rarr;</button>
+        </div>
+    </div>
+
+    <!-- Slide 3: Approach -->
+    <div class="slide" id="slide3">
+        <h2>c. My Approach: Spectral Diagnostics</h2>
+        <p>How to prove the satellite is wrong using physics.</p>
+
+        <img src="spectral_signature.png" class="graph-img" alt="Spectral Signature Graph">
+
+        <p style="margin-top:15px; font-size: 1rem;"><em>Fig 1: Notice how Haze (Cyan) is high in Blue, while Algae
+                (Green) spikes in NIR.</em></p>
+
+        <div class="nav-bar">
+            <button class="btn" onclick="nextSlide(4)">Logic & Assumptions &rarr;</button>
+        </div>
+    </div>
+
+    <!-- Slide 4: Logic -->
+    <div class="slide" id="slide4">
+        <h2>d. Decision Logic & Assumptions</h2>
+        <p><strong>Spatial Weighting:</strong></p>
+        <ul>
+            <li>Hypothesis: Atmospheric effects are large-scale (Corr ~= 1).</li>
+            <li>Evidence: 5 random points are CLEAR.</li>
+            <li>Inference: If the "Greenness" map matches the "Haze" map, the entire alert is false.</li>
+            <li><strong>Action:</strong> CANCEL alert for the whole region.</li>
+        </ul>
+        <p><strong>Assumption:</strong> The 5 field sites are spatially distributed enough to represent the atmospheric
+            conditions of the whole tile.</p>
+        <div class="nav-bar">
+            <button class="btn" onclick="nextSlide(5)">Validation Framework &rarr;</button>
+        </div>
+    </div>
+
+    <!-- Slide 5: Validation Framework -->
+    <div class="slide" id="slide5">
+        <h2>e. Validation Framework (Workflow)</h2>
+        <p>Automated "Gatekeepers" to prevent false alarms.</p>
+
+        <div class="workflow">
+            <div class="node">
+                <h4>Raw Sat Data</h4>
+            </div>
+            <div class="arrow">&rarr;</div>
+            <div class="node gate">
+                <h4>Met Gate</h4>
+                <p style="font-size:0.8rem">Cloud/Wind check</p>
+            </div>
+            <div class="arrow">&rarr;</div>
+            <div class="node gate">
+                <h4>Bio Gate</h4>
+                <p style="font-size:0.8rem">Growth Rate check</p>
+            </div>
+            <div class="arrow">&rarr;</div>
+            <div class="node" style="border-color: #ff3333;">
+                <h4>USER ALERT</h4>
+            </div>
+        </div>
+
+        <br>
+        <p><strong>Secondary Data Used:</strong> Meteorological (Humidity/Wind), Temporal (Previous day's reading), Sea
+            Surface Temperature.</p>
+
+        <div class="nav-bar">
+            <button class="btn" onclick="nextSlide(1)">&#8634; Reset System</button>
+        </div>
+    </div>
+
+    <script>
+        function nextSlide(id) {
+            document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
+            document.getElementById('slide' + id).classList.add('active');
+        }
+    </script>
+</body>
+
+</html>
