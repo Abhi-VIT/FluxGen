@@ -1,23 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FluxGen R&D Internship | Round 1</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
     <nav class="nav-dots">
         <a href="#slide1" class="dot" title="Intro"></a>
-        <a href="#slide2" class="dot" title="Problem 1"></a>
-        <a href="#slide3" class="dot" title="Problem 2"></a>
-        <a href="#slide4" class="dot" title="Problem 3"></a>
-        <a href="#slide5" class="dot" title="Problem 4"></a>
-        <a href="#slide6" class="dot" title="Conclusion"></a>
+        <a href="#slide2" class="dot" title="Prob 1: Geometry"></a>
+        <a href="#slide3" class="dot" title="Prob 1: Workflow"></a>
+        <a href="#slide4" class="dot" title="Prob 2: Spectral"></a>
+        <a href="#slide5" class="dot" title="Prob 2: Workflow"></a>
+        <a href="#slide6" class="dot" title="Prob 3: Mass Balance"></a>
+        <a href="#slide7" class="dot" title="Prob 3: Workflow"></a>
+        <a href="#slide8" class="dot" title="Prob 4: Groundwater"></a>
+        <a href="#slide9" class="dot" title="Prob 4: Workflow"></a>
+        <a href="#slide10" class="dot" title="Outro"></a>
     </nav>
 
-    <!-- Slide 1: Into -->
+    <!-- Slide 1: Intro -->
     <section id="slide1" class="slide">
         <div class="content">
             <h3>R&D Internship Assignment</h3>
@@ -28,60 +34,180 @@
         </div>
     </section>
 
-    <!-- Slide 2: Problem 1 -->
+    <!-- Slide 2: Problem 1 - Intro -->
     <section id="slide2" class="slide">
         <div class="content">
             <h2>1. The Incomplete Geometry</h2>
             <p><strong>Challenge:</strong> Estimating reservoir volume with 35% missing bathymetric data.</p>
             <ul>
-                <li><strong>Solution:</strong> Use <span class="highlight">Kriging Interpolation</span> to predict unknown depths based on spatial autocorrelation.</li>
-                <li><strong>Constraint:</strong> Natural topography implies continuity; sudden cliffs are unlikely but possible.</li>
-                <li><strong>Validation:</strong> Cross-validation by hiding 10% of known points and measuring prediction error.</li>
+                <li><strong>Solution:</strong> Use <span class="highlight">Kriging Interpolation</span> to predict
+                    unknown depths based on spatial autocorrelation.</li>
+                <li><strong>Constraint:</strong> Natural topography implies continuity; sudden cliffs are unlikely but
+                    possible.</li>
+                <li><strong>Validation:</strong> Cross-validation by hiding 10% of known points and measuring prediction
+                    error.</li>
             </ul>
+            <a href="#slide3" class="btn">View Methodology &rarr;</a>
         </div>
     </section>
 
-    <!-- Slide 3: Problem 2 -->
+    <!-- Slide 3: Problem 1 - Workflow -->
     <section id="slide3" class="slide">
+        <div class="content">
+            <h2>P1: Spatial Interpolation Workflow</h2>
+            <div class="workflow-container">
+                <div class="step">
+                    <h4>Step 1</h4>
+                    <p>Input Survey Data (x,y,z)</p>
+                </div>
+                <div class="step">
+                    <h4>Step 2</h4>
+                    <p>Fit Variogram Model</p>
+                </div>
+                <div class="step">
+                    <h4>Step 3</h4>
+                    <p>Kriging Interpolation</p>
+                </div>
+                <div class="step">
+                    <h4>Step 4</h4>
+                    <p>Volume Integration</p>
+                </div>
+            </div>
+            <div style="margin-top: 20px;">
+                <img src="../Problem_1_Geometry/geometry_analysis.png" style="max-height: 30vh; margin-top: 10px;"
+                    alt="P1 Validation">
+            </div>
+            <a href="#slide4" class="btn">Next Problem &rarr;</a>
+        </div>
+    </section>
+
+    <!-- Slide 4: Problem 2 - Intro -->
+    <section id="slide4" class="slide">
         <div class="content">
             <h2>2. The Spectral Discrepancy</h2>
             <p><strong>Challenge:</strong> Satellite shows "Algae Bloom", but ground sensors say "Clear".</p>
             <ul>
-                <li><strong>Diagnosis:</strong> Likely <span class="highlight">Atmospheric Scattering</span> (Haze) or Sun Glint affecting the sensor.</li>
-                <li><strong>Decision Logic:</strong> Trust the ground truth (Field Sites). If they are clear, the satellite is likely biased globally.</li>
-                <li><strong>Protocol:</strong> Check "Blue Band" for aerosol spikes before issuing alerts. Only alert if spectral signature matches biological growth patterns.</li>
+                <li><strong>Diagnosis:</strong> Likely <span class="highlight">Atmospheric Scattering</span> (Haze) or
+                    Sun Glint affecting the sensor.</li>
+                <li><strong>Decision Logic:</strong> Trust the ground truth (Field Sites). If they are clear, the
+                    satellite is likely biased globally.</li>
             </ul>
+            <a href="#slide5" class="btn">View Validation Framework &rarr;</a>
         </div>
     </section>
 
-    <!-- Slide 4: Problem 3 -->
-    <section id="slide4" class="slide">
+    <!-- Slide 5: Problem 2 - Workflow -->
+    <section id="slide5" class="slide">
+        <div class="content">
+            <h2>P2: Validation Framework</h2>
+            <div class="workflow-container">
+                <div class="step">
+                    <h4>Raw Data</h4>
+                    <p>Satellite Input</p>
+                </div>
+                <div class="step">
+                    <h4>Met Check</h4>
+                    <p>Is Cloud/Haze High?</p>
+                </div>
+                <div class="step">
+                    <h4>Bio Check</h4>
+                    <p>Is Growth Rate Realistic?</p>
+                </div>
+                <div class="step" style="border-color: #ff0055;">
+                    <h4>ALERT</h4>
+                    <p>Trigger User Warning</p>
+                </div>
+            </div>
+            <div style="margin-top: 20px;">
+                <img src="../Problem_2_Spectral/spectral_signature.png" style="max-height: 30vh; margin-top: 10px;"
+                    alt="P2 Spectral">
+            </div>
+            <a href="#slide6" class="btn">Next Problem &rarr;</a>
+        </div>
+    </section>
+
+    <!-- Slide 6: Problem 3 - Intro -->
+    <section id="slide6" class="slide">
         <div class="content">
             <h2>3. The Balancing Act</h2>
             <p><strong>Challenge:</strong> 400 units of water missing; 12-hour delay in outflow.</p>
-            <p><strong>Model Interpretation:</strong> The missing mass is primarily <span class="highlight">Delayed Storage</span> in the lake buffer and <span class="highlight">Infiltration Loss</span>.</p>
-            
-            <img src="mass_balance_simulation.png" alt="Mass Balance Simulation Graph">
-            
-            <p style="font-size: 0.9rem; margin-top: 10px;">Fig 1: Simulation showing Lake Buffer absorbing impact and delaying outflow.</p>
+            <p><strong>Model Interpretation:</strong> The missing mass is primarily <span class="highlight">Delayed
+                    Storage</span> in the lake buffer and <span class="highlight">Infiltration Loss</span>.</p>
+            <a href="#slide7" class="btn">View Digital Twin Logic &rarr;</a>
         </div>
     </section>
 
-    <!-- Slide 5: Problem 4 -->
-    <section id="slide5" class="slide">
+    <!-- Slide 7: Problem 3 - Workflow -->
+    <section id="slide7" class="slide">
+        <div class="content">
+            <h2>P3: Digital Twin Optimization</h2>
+            <div class="workflow-container">
+                <div class="step">
+                    <h4>Sensor Inputs</h4>
+                    <p>Rain + Level + Flow</p>
+                </div>
+                <div class="step">
+                    <h4>Physics Correction</h4>
+                    <p>Norm. for Temp (Expansion)</p>
+                </div>
+                <div class="step">
+                    <h4>Lag Model</h4>
+                    <p>Apply Travel Time Delay</p>
+                </div>
+                <div class="step">
+                    <h4>Twin Output</h4>
+                    <p>Balanced Mass Equation</p>
+                </div>
+            </div>
+            <div style="margin-top: 20px;">
+                <img src="mass_balance_simulation.png" style="max-height: 30vh; margin-top: 10px;" alt="P3 Simulation">
+            </div>
+            <a href="#slide8" class="btn">Next Problem &rarr;</a>
+        </div>
+    </section>
+
+    <!-- Slide 8: Problem 4 - Intro -->
+    <section id="slide8" class="slide">
         <div class="content">
             <h2>4. Spatial Groundwater Model</h2>
             <p><strong>Challenge:</strong> Modeling interaction of 4 consumption sources and a critical zone.</p>
-            <p><strong>Approach:</strong> 2D Grid Model with interacting <span class="highlight">Cones of Depression</span>.</p>
-            
-            <img src="groundwater_model.png" alt="Groundwater Heatmap">
-            
-            <p style="font-size: 0.9rem; margin-top: 10px;">Fig 2: Heatmap showing groundwater stress merging from Agriculture & Built-up zones.</p>
+            <p><strong>Approach:</strong> 2D Grid Model with interacting <span class="highlight">Cones of
+                    Depression</span>.</p>
+            <a href="#slide9" class="btn">View Modeling Steps &rarr;</a>
         </div>
     </section>
 
-    <!-- Slide 6: Outro -->
-    <section id="slide6" class="slide">
+    <!-- Slide 9: Problem 4 - Workflow -->
+    <section id="slide9" class="slide">
+        <div class="content">
+            <h2>P4: Spatial Modeling Workflow</h2>
+            <div class="workflow-container">
+                <div class="step">
+                    <h4>Init Domain</h4>
+                    <p>100x100 Grid</p>
+                </div>
+                <div class="step">
+                    <h4>Inject Sources</h4>
+                    <p>Apply Gaussian Function</p>
+                </div>
+                <div class="step">
+                    <h4>Superposition</h4>
+                    <p>Sum All Drawdowns</p>
+                </div>
+                <div class="step">
+                    <h4>Validation</h4>
+                    <p>Check Critical Zones</p>
+                </div>
+            </div>
+            <div style="margin-top: 20px;">
+                <img src="groundwater_model.png" style="max-height: 30vh; margin-top: 10px;" alt="P4 Heatmap">
+            </div>
+            <a href="#slide10" class="btn">Conclusion &rarr;</a>
+        </div>
+    </section>
+
+    <!-- Slide 10: Outro -->
+    <section id="slide10" class="slide">
         <div class="content">
             <h1>Thank You</h1>
             <p>Ready for the next round of challenges.</p>
@@ -91,7 +217,7 @@
     </section>
 
     <script>
-        // Simple active dot updater
+        // Active dot updater
         const sections = document.querySelectorAll('section');
         const dots = document.querySelectorAll('.dot');
 
@@ -113,4 +239,5 @@
         });
     </script>
 </body>
+
 </html>
