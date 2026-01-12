@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FluxGen R&D Internship | Round 1</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav class="nav-dots">
+        <a href="#slide1" class="dot" title="Intro"></a>
+        <a href="#slide2" class="dot" title="Problem 1"></a>
+        <a href="#slide3" class="dot" title="Problem 2"></a>
+        <a href="#slide4" class="dot" title="Problem 3"></a>
+        <a href="#slide5" class="dot" title="Problem 4"></a>
+        <a href="#slide6" class="dot" title="Conclusion"></a>
+    </nav>
+
+    <!-- Slide 1: Into -->
+    <section id="slide1" class="slide">
+        <div class="content">
+            <h3>R&D Internship Assignment</h3>
+            <h1>FluxGen Sustainable Technologies</h1>
+            <p>Candidate Submission | Round 1</p>
+            <p style="color: #888;">Mathematics | Spatial Modeling | Systems Thinking</p>
+            <a href="#slide2" class="btn">Start Presentation</a>
+        </div>
+    </section>
+
+    <!-- Slide 2: Problem 1 -->
+    <section id="slide2" class="slide">
+        <div class="content">
+            <h2>1. The Incomplete Geometry</h2>
+            <p><strong>Challenge:</strong> Estimating reservoir volume with 35% missing bathymetric data.</p>
+            <ul>
+                <li><strong>Solution:</strong> Use <span class="highlight">Kriging Interpolation</span> to predict unknown depths based on spatial autocorrelation.</li>
+                <li><strong>Constraint:</strong> Natural topography implies continuity; sudden cliffs are unlikely but possible.</li>
+                <li><strong>Validation:</strong> Cross-validation by hiding 10% of known points and measuring prediction error.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Slide 3: Problem 2 -->
+    <section id="slide3" class="slide">
+        <div class="content">
+            <h2>2. The Spectral Discrepancy</h2>
+            <p><strong>Challenge:</strong> Satellite shows "Algae Bloom", but ground sensors say "Clear".</p>
+            <ul>
+                <li><strong>Diagnosis:</strong> Likely <span class="highlight">Atmospheric Scattering</span> (Haze) or Sun Glint affecting the sensor.</li>
+                <li><strong>Decision Logic:</strong> Trust the ground truth (Field Sites). If they are clear, the satellite is likely biased globally.</li>
+                <li><strong>Protocol:</strong> Check "Blue Band" for aerosol spikes before issuing alerts. Only alert if spectral signature matches biological growth patterns.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Slide 4: Problem 3 -->
+    <section id="slide4" class="slide">
+        <div class="content">
+            <h2>3. The Balancing Act</h2>
+            <p><strong>Challenge:</strong> 400 units of water missing; 12-hour delay in outflow.</p>
+            <p><strong>Model Interpretation:</strong> The missing mass is primarily <span class="highlight">Delayed Storage</span> in the lake buffer and <span class="highlight">Infiltration Loss</span>.</p>
+            
+            <img src="mass_balance_simulation.png" alt="Mass Balance Simulation Graph">
+            
+            <p style="font-size: 0.9rem; margin-top: 10px;">Fig 1: Simulation showing Lake Buffer absorbing impact and delaying outflow.</p>
+        </div>
+    </section>
+
+    <!-- Slide 5: Problem 4 -->
+    <section id="slide5" class="slide">
+        <div class="content">
+            <h2>4. Spatial Groundwater Model</h2>
+            <p><strong>Challenge:</strong> Modeling interaction of 4 consumption sources and a critical zone.</p>
+            <p><strong>Approach:</strong> 2D Grid Model with interacting <span class="highlight">Cones of Depression</span>.</p>
+            
+            <img src="groundwater_model.png" alt="Groundwater Heatmap">
+            
+            <p style="font-size: 0.9rem; margin-top: 10px;">Fig 2: Heatmap showing groundwater stress merging from Agriculture & Built-up zones.</p>
+        </div>
+    </section>
+
+    <!-- Slide 6: Outro -->
+    <section id="slide6" class="slide">
+        <div class="content">
+            <h1>Thank You</h1>
+            <p>Ready for the next round of challenges.</p>
+            <p><em>"Simplicity is the ultimate sophistication."</em></p>
+            <a href="#" class="btn" onclick="window.close()">Close Presentation</a>
+        </div>
+    </section>
+
+    <script>
+        // Simple active dot updater
+        const sections = document.querySelectorAll('section');
+        const dots = document.querySelectorAll('.dot');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            dots.forEach(dot => {
+                dot.classList.remove('active');
+                if (dot.getAttribute('href').includes(current)) {
+                    dot.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

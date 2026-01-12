@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Problem 1: The Incomplete Geometry</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="progress-bar" id="progressBar"></div>
+
+    <!-- Slide 1: Title -->
+    <div class="slide active" id="slide1">
+        <h1>Problem 1: The Incomplete Geometry</h1>
+        <p style="text-align: center;">FluxGen R&D Internship Assignment</p>
+        <p style="text-align: center; font-style: italic; color: #888;">Complexity: Foundation</p>
+        <button class="nav-btn" onclick="nextSlide(2)">Start Solution &rarr;</button>
+    </div>
+
+    <!-- Slide 2: Understanding & Principles -->
+    <div class="slide" id="slide2">
+        <h2>a. My Understanding</h2>
+        <p>The core challenge is to estimate the volume of a natural reservoir where <strong>missing data (35%) is
+                systematically biased</strong> (one large chunk is missing) rather than randomly distributed. This
+            creates a "Blind Spot" that simple averaging cannot fix.</p>
+        <br>
+        <h2>b. Key Physical Principles</h2>
+        <ul>
+            <li><strong>Spatial Autocorrelation:</strong> Depth at any point is correlated with its neighbors (Tobler's
+                Law).</li>
+            <li><strong>Topological Continuity:</strong> Natural surfaces (bedrock/sediment) tend to be smooth and
+                continuous, not jagged.</li>
+            <li><strong>Hydrostatic Equilibrium:</strong> The water surface provides a flat reference plane (Z=0).</li>
+        </ul>
+        <button class="nav-btn" onclick="nextSlide(3)">Next: The Approach &rarr;</button>
+    </div>
+
+    <!-- Slide 3: Approach (Workflow) -->
+    <div class="slide" id="slide3">
+        <h2>c. My Approach (Workflow)</h2>
+
+        <div class="workflow-container">
+            <div class="step">
+                <h4>DATA INPUT</h4>
+                <p style="font-size: 0.9rem;">40 Survey Points (x,y,z)</p>
+            </div>
+            <div class="step">
+                <h4>MODELING</h4>
+                <p style="font-size: 0.9rem;">Kriging / Radial Basis Function</p>
+            </div>
+            <div class="step">
+                <h4>EXTRAPOLATION</h4>
+                <p style="font-size: 0.9rem;">Fill 35% Void with Trends</p>
+            </div>
+            <div class="step">
+                <h4>INTEGRATION</h4>
+                <p style="font-size: 0.9rem;">Calculate Total Volume</p>
+            </div>
+        </div>
+        <br><br>
+        <p><strong>Logic:</strong> I use <em>Kriging Interpolation</em> because it models the statistical relationship
+            between points, allowing us to predict the "Blind Spot" based on the slope and curvature of the known area.
+        </p>
+
+        <button class="nav-btn" onclick="nextSlide(4)">Next: Assumptions &rarr;</button>
+    </div>
+
+    <!-- Slide 4: Assumptions & Limitations -->
+    <div class="slide" id="slide4">
+        <h2>d. Assumptions & Limitations</h2>
+        <ul>
+            <li><strong>Assumption 1:</strong> The reservoir bed is geologically homogeneous. There are no sudden cliffs
+                or sinkholes hidden in the unmeasured zone.</li>
+            <li><strong>Assumption 2:</strong> The "Structural Obstructions" are surface-level features (e.g.,
+                buildings, rock overhangs) and do not imply a fundamental change in the underwater geology.</li>
+            <li><strong>Limitation:</strong> Extrapolation error grows with distance. The center of the 35% void has the
+                highest uncertainty.</li>
+        </ul>
+        <button class="nav-btn" onclick="nextSlide(5)">Next: Validation &rarr;</button>
+    </div>
+
+    <!-- Slide 5: Validation Strategy -->
+    <div class="slide" id="slide5">
+        <h2>e. Validation Framework</h2>
+        <p>How do we know we are right without measuring?</p>
+        <ul>
+            <li><strong>1. "Leave-One-Out" Cross-Validation:</strong> Hide known points one by one, predict them using
+                the model, and calculate the RMSE (Error). If the model predicts known points well, it likely predicts
+                unknown points reasonably well.</li>
+            <li><strong>2. Variance Mapping:</strong> Kriging provides an "Uncertainty Map". We can calculate Volume ±
+                Confidence Interval (e.g. 50,000m³ ± 10%).</li>
+            <li><strong>3. Edge Constraints:</strong> Verify if the reservoir edges taper to zero depth. Incorporate
+                this boundary condition to anchor the model.</li>
+        </ul>
+        <div style="margin-top:20px;">
+            <img src="geometry_analysis.png" alt="Validation Graph"
+                style="height: 250px; border-radius: 8px; border: 1px solid #555;">
+        </div>
+        <button class="nav-btn" onclick="nextSlide(1)">Back to Start &#8634;</button>
+    </div>
+
+    <script>
+        const totalSlides = 5;
+
+        function nextSlide(slideId) {
+            // Hide all
+            document.querySelectorAll('.slide').forEach(s => {
+                s.classList.remove('active');
+            });
+
+            // Show Target
+            const target = document.getElementById('slide' + slideId);
+            if (target) {
+                target.classList.add('active');
+                updateProgress(slideId);
+            }
+        }
+
+        function updateProgress(current) {
+            const pct = (current / totalSlides) * 100;
+            document.getElementById('progressBar').style.width = pct + '%';
+        }
+
+        // Initialize
+        updateProgress(1);
+    </script>
+</body>
+
+</html>
